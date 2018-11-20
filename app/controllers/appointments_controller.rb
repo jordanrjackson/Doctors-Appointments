@@ -10,9 +10,9 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    @appointment = @course.appointments.new(appointment_params)
+    @appointment = @doctor.appointments.new(appointment_params)
     if @appointment.save
-      redirect_to doctor_appointments_path
+      redirect_to doctor_appointments_path(@doctor)
     else
       render :new
     end
@@ -30,6 +30,6 @@ class AppointmentsController < ApplicationController
    end
 
    def appointment_params
-     params.require(:appointment).permit(:role, :user_id)
+     params.require(:appointment).permit(:user_id)
    end
 end
